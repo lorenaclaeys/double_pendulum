@@ -3,8 +3,8 @@ import enum as en
 import math
 #### parameters
 # mass (kg)
-m1 = 1
-m2 = 1
+m1 = 1.
+m2 = 2.
 # lenght (m)
 l=1
 #angle (rad)
@@ -12,8 +12,8 @@ th1 = .5*(math.pi)
 th2 = 0
 
 #constants for the solver
-h = 0.1
-t_max = 100
+h = 0.01
+t_max = 10
 
 
 def rk_4(derivatives, theta, t, h):
@@ -43,10 +43,10 @@ def derivatives(t, theta):
     dth2 = theta[3]
     denom = 1/(m1 + m2*math.sin(th1 - th2)**2)
     a = m2*(g/l)*math.sin(th2)*math.cos(th1 -th2)
-    b = (dth1**2)*math.cos(th1-th2) + (th2**2)
+    b = (dth1**2)*math.cos(th1-th2) + (dth2**2)
     c = (m1 + m2)*(g/l)*math.sin(th1)
 
-    d = m2*(th2**2)*math.sin(th1 - th2)*math.cos(th1 -th2)
+    d = m2*(dth2**2)*math.sin(th1 - th2)*math.cos(th1 -th2)
     e = (g/l)*math.sin(th1)*math.cos(th1 -th2)
     f = (dth1**2)*math.sin(th1 - th2)
     g = (g/l)*math.sin(th2)
