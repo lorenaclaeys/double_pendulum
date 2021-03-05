@@ -1,5 +1,4 @@
 import numpy as np
-import enum as en
 import math
 #### parameters
 # mass (kg)
@@ -51,6 +50,7 @@ def derivatives(t, theta):
     f = (dth1**2)*math.sin(th1 - th2)
     g = (g/l)*math.sin(th2)
     return np.array([dth1, dth2, (denom)*(a - m2*math.sin(th1 - th2)*(b - c)), (denom)*(d + (m1 + m2)*(e + f - g))])
+
 
 test = pendulum(derivatives, th1, th2, t_max, h)
 print(test)
