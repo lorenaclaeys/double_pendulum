@@ -1,0 +1,9 @@
+def Energie(y):
+    g=9.81
+    th1, th1d, th2, th2d = y.T
+    V = -(m1+m2)*l*g*math.cos(th1) - m2*l*g*math.cos(th2)
+    T = .5*m1*(l*th1d)**2 + .5*m2*((l*th1d)**2 + (l*th2d)**2 +2*l*l*th1d*th2d*math.cos(th1-th2))
+    return T + V
+
+y0 = np.array([3*np.pi/7, 0, 3*np.pi/4, 0]) #les conditions initiales, cad ton vecteur théta
+print(Energie(y0))
