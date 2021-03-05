@@ -3,7 +3,7 @@ import math
 #### parameters
 # mass (kg)
 m1 = 1.
-m2 = 2.
+m2 = 1.
 # lenght (m)
 l=1
 #angle (rad)
