@@ -9,7 +9,7 @@ if __name__ == "__main__":
     m1 = 1.
     m2 = 1.
     # lenght (m)
-    l=1
+    l=1.
     #angle (rad)
     th1 = .5*(math.pi)
     th2 = 0
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     THETA, T = solver.pendulum(solver.p_derivatives, th1, th2, t_max, h, m1, m2, g, l)
     for (i,t) in enumerate(T):
         test = liapunov.energie(THETA[i,:], m1, m2, g, l)
-        print(test)
+        #print(test)

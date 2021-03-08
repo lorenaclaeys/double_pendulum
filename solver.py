@@ -36,6 +36,7 @@ def p_derivatives(t,theta, m1, m2, g, l):
     j = (g/l)*math.sin(th2)
     return np.array([dth1, dth2, (denom)*(a - m2*math.sin(th1 - th2)*(b - c)), (denom)*(d + (m1 + m2)*(e + f - j))])
 
+#only to test rk_4
 def free_fall(derivatives, x0, t_max, h, g):
     N = int(1 + t_max/h)
     X = np.zeros((N,2))
