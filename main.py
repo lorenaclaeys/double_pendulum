@@ -12,7 +12,7 @@ if __name__ == "__main__":
     l=1.
     #angle (rad)
     th1 = .5*(math.pi)
-    th2 = 0
+    th2 = 0.
     #
     g = 9.81
     #constants for the solver
@@ -22,5 +22,5 @@ if __name__ == "__main__":
 
     THETA, T = solver.pendulum(solver.p_derivatives, th1, th2, t_max, h, m1, m2, g, l)
     for (i,t) in enumerate(T):
-        test = liapunov.energie(THETA[i,:], m1, m2, g, l)
+        test = liapunov.energy(theta, m1, m2, g, l)
         #print(test)

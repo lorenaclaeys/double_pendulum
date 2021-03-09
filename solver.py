@@ -25,32 +25,10 @@ def p_derivatives(t,theta, m1, m2, g, l):
     th2 = theta[1]
     dth1 = theta[2]
     dth2 = theta[3]
-    denom = 1/(m1 + m2*math.sin(th1 - th2)**2)
-    a = m2*(g/l)*math.sin(th2)*math.cos(th1 -th2)
-    b = (dth1**2)*math.cos(th1-th2) + (dth2**2)
-    c = (m1 + m2)*(g/l)*math.sin(th1)
 
-    d = m2*(dth2**2)*math.sin(th1 - th2)*math.cos(th1 -th2)
-    e = (g/l)*math.sin(th1)*math.cos(th1 -th2)
-    f = (dth1**2)*math.sin(th1 - th2)
-    j = (g/l)*math.sin(th2)
-    return np.array([dth1, dth2, (denom)*(a - m2*math.sin(th1 - th2)*(b - c)), (denom)*(d + (m1 + m2)*(e + f - j))])
+    delta = th2 - th1
+    denom = (m1 + m2) * l - m2*l*math.cos(delta)*math.cos(delta)
+    ddth1 = ((m2*l*(dth1**2)*math.sin(delta)*math.cos(delta) + m2*g*math.sin(th2)*math.cos(delta) + m2*l*(dth2**2)*math.sin(delta) - (m1 + m2)*g*math.sin(th1))/ denom)
+    ddth2 = ((- m2*l*(dth2**2)*math.sin(delta)*math.cos(delta) + (m1 + m2)*g*math.sin(th1)*math.cos(delta) - (m1 + m2)*l*(dth1**2)*math.sin(delta) - (m1 + m2)*g*math.sin(th2))/ denom)
 
-#only to test rk_4
-def free_fall(derivatives, x0, t_max, h, g):
-    N = int(1 + t_max/h)
-    X = np.zeros((N,2))
-    # condition initiale:
-    X[0, 0] = x0
-    T = np.linspace(0, t_max, N)
-    for (i,t) in enumerate(T[1:]):
-        x = X[i, :]
-        X[i+1, :] = x + h*rk_4(derivatives, x, t, h, 0., 0., g, 0.)
-    return X, T
-
-def ff_derivatives(t, xx, m1, m2, g, l):
-    x = xx[0]
-    dx = xx[1]
-    return np.array([dx, g])
-
-#X, ts = free_fall(ff_derivatives, 10., 1., .01, -9.81)
+    return np.array([dth1, dth2, ddth1, ddth2])

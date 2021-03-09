@@ -1,7 +1,7 @@
 import solver
 import math
 
-def energie(theta, m1, m2, g, l):
+def energy(theta, m1, m2, g, l):
     th1 = theta[0]
     th2 = theta[1]
     dth1 = theta[2]
